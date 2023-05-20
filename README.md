@@ -2,6 +2,22 @@
 
 # caution: very WIP
 
+# installation & usage
+<b>prerequisites:</b>
+
+python 3.9+ (tested with 3.11)
+
+pip
+
+<b>installation:</b> (preferably in an venv)
+
+clone repo
+
+run pip install -r requirements.txt 
+
+run main.py
+
+
 <hr>
 
 # hyprset

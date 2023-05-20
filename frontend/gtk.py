@@ -74,7 +74,8 @@ class Hyprset_glade(Gtk.Application):
 
                 entry.connect("value-changed",self.handler.callback_scale)
             case float():
-                entry = Gtk.Scale() 
+                
+                entry = Gtk.Scale()
                 setattr(entry,"__setting",setting)
                 setattr(entry,"__section",tab)
                 entry.set_range(0,10)
@@ -82,6 +83,23 @@ class Hyprset_glade(Gtk.Application):
                 entry.set_digits(2)
                 entry.set_increments(0.1,1)
 
+                entry.connect("value-changed",self.handler.callback_scale)
+            case list():
+                value = value[0]
+                entry = Gtk.Scale()
+                setattr(entry,"__setting",setting)
+                setattr(entry,"__section",tab)
+                print(value['options']['digits'])
+                entry.set_range(0,value['options']["max_value"])
+                entry.set_value(value["value"])
+                entry.set_digits(value['options']['digits'])
+                entry.set_increments(value["options"]["interval"], 1)
+                
+                docs = ''
+                for i in value["options"]["options"]:
+                    docs = docs + str(i[0]) + ' - ' + str(i[1]) + '\n'
+                doc = docs + doc
+                
                 entry.connect("value-changed",self.handler.callback_scale)
             case _:
                 entry = Gtk.Label("Unknown type")
